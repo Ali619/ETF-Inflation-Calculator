@@ -29,4 +29,5 @@ for k, v in buttons.items():
     Create_Label(window=window, text=buttons[k]["name"], row=i, column=0)
     buttons[k]["entry"].append(Create_Entry(window, row=i, column=1))
     buttons[k]["entry"].append(Create_Entry(window, row=i, column=2))
+    buttons[k]["row_number"] = i
     i += 1
