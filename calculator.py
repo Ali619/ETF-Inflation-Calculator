@@ -7,6 +7,8 @@ def calculator():
             try:
                 last_price, nav_price = int(buttons[k]["entry"][0].get()), int(buttons[k]["entry"][1].get())
                 result = (int(last_price) - int(nav_price)) / int(nav_price) * 100
+                if result <= 0:
+                    tk.Label(window, text=f"  {result:.2f} %  ", fg="blue").grid(row=buttons[k]["row_number"], column=3)
                 if 0.0 <= result < 7.0:
                     tk.Label(window, text=f"  {result:.2f} %  ", fg="green").grid(row=buttons[k]["row_number"], column=3)
                 if 7.01 <= result < 15.0:
