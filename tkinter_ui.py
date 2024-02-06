@@ -21,7 +21,7 @@ class Create_Entry():
 window = tk.Tk()
 window.title("حباب سنج")
 etf_name_label = Create_Label(window=window, text="نام صندوق", row=0, column=00)
-last_price_label = Create_Label(window=window, text="قیمت آخرین معامله", row=0, column=1)
+last_price_label = Create_Label(window=window, text="قیمت پایانی", row=0, column=1)
 nav_price_label = Create_Label(window=window, text="ابطال NAV قیمت", row=0, column=2)
 result_label = Create_Label(window=window, text="میزان حباب (%)", row=0, column=3)            
 
