@@ -21,4 +21,3 @@ def calculator():
                 pass
         
 calc_infl_button = tk.Button(window, text="اجرا", command=lambda: calculator(), borderwidth=5, width=20, fg="red").grid(row=len(buttons)+1, column=0, columnspan=2)
-exit_button = tk.Button(window, text="خروج", command=lambda: exit(), borderwidth=5, width=20, fg="red").grid(row=len(buttons)+1, column=2, columnspan=3)
