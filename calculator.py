@@ -7,26 +7,30 @@ from tabulate import tabulate
 
 def calculator():
     final_result = {'last_price': [], 'nav_price': [], 'bubble (%)': [], 'name': []}
-    for k,v in etfs.items(): 
-            try:
-                last_price, nav_price = int(etfs[k]["entry"][0].get()), int(etfs[k]["entry"][1].get())
-                result = (int(last_price) - int(nav_price)) / int(nav_price) * 100
-                if result <= 0:
-                    tk.Label(window, text=f"  {result:.2f} %  ", fg="blue").grid(row=etfs[k]["row_number"], column=3)
-                if 0.0 <= result < 7.0:
-                    tk.Label(window, text=f"  {result:.2f} %  ", fg="green").grid(row=etfs[k]["row_number"], column=3)
-                if 7.01 <= result < 15.0:
-                    tk.Label(window, text=f"  {result:.2f} %  ", fg="orange").grid(row=etfs[k]["row_number"], column=3)
-                if 15.01 <= result:
-                    tk.Label(window, text=f"  {result:.2f} %  ", fg="red").grid(row=etfs[k]["row_number"], column=3)
-                final_result['name'].append(str(etfs[k]['name']))
-                final_result['last_price'].append(str(last_price))
-                final_result['nav_price'].append(str(nav_price))
-                final_result['bubble (%)'].append(str(result))
-            except Exception as e:
-                tk.Label(window, text=f" "*20).grid(row=etfs[k]["row_number"], column=3)
-                print(e)
-                pass
+    color_ranges = {
+        (None, 0): "blue",
+        (0, 7): "green",
+        (7, 15): "orange",
+        (15, None): "red"
+    }
+    
+    for k, v in etfs.items():
+        try:
+            last_price, nav_price = int(v["entry"][0].get()), int(v["entry"][1].get())
+            result = (last_price - nav_price) / nav_price * 100
+
+            color = next(color for (min_val, max_val), color in color_ranges.items() 
+                        if (min_val is None or result > min_val) and (max_val is None or result <= max_val))
+            
+            tk.Label(window, text=f"  {result:.2f} %  ", fg=color).grid(row=v["row_number"], column=3)
+            final_result['name'].append(str(v['name']))
+            final_result['last_price'].append(str(last_price))
+            final_result['nav_price'].append(str(nav_price))
+            final_result['bubble (%)'].append(str(result))
+        except Exception as e:
+            tk.Label(window, text=" "*20).grid(row=v["row_number"], column=3)
+            print(e)
+            pass
     return final_result
 
 def save_as_text():
