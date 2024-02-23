@@ -4,7 +4,7 @@ from etfs import etfs
 from tabulate import tabulate
 
 def calculator():
-    final_result = {'name': [], 'last_price': [], 'nav_price': [], 'bubble': []}
+    final_result = {'last_price': [], 'nav_price': [], 'bubble': [], 'name': []}
     for k,v in etfs.items(): 
             try:
                 last_price, nav_price = int(etfs[k]["entry"][0].get()), int(etfs[k]["entry"][1].get())
