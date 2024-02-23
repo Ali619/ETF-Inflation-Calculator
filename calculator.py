@@ -2,9 +2,10 @@ import tkinter as tk
 from tkinter_ui import window
 from etfs import etfs
 from tabulate import tabulate
+from persiantools.jdatetime import JalaliDate
 
 def calculator():
-    final_result = {'last_price': [], 'nav_price': [], 'bubble': [], 'name': []}
+    final_result = {'last_price': [], 'nav_price': [], 'bubble (%)': [], 'name': []}
     for k,v in etfs.items(): 
             try:
                 last_price, nav_price = int(etfs[k]["entry"][0].get()), int(etfs[k]["entry"][1].get())
@@ -20,7 +21,7 @@ def calculator():
                 final_result['name'].append(str(etfs[k]['name']))
                 final_result['last_price'].append(str(last_price))
                 final_result['nav_price'].append(str(nav_price))
-                final_result['bubble'].append(str(result))
+                final_result['bubble (%)'].append(str(result))
             except Exception as e:
                 tk.Label(window, text=f" "*20).grid(row=etfs[k]["row_number"], column=3)
                 print(e)
@@ -29,9 +30,9 @@ def calculator():
 
 def save_as_text():
     result = calculator()
-    print(result)
-    with open("test.txt", 'w', encoding='utf-8') as f:
-        f.write(tabulate(result, headers = 'keys', tablefmt = 'psql'))
+    # print(result)
+    with open(f"{JalaliDate.today()}.txt", 'w', encoding='utf-8') as f:
+        f.write(tabulate(result, headers = 'keys', tablefmt = 'psql', numalign="center", stralign="center"))
 
 calc_infl_button = tk.Button(window, text="اجرا", command=lambda: calculator(), borderwidth=5, width=25, fg="red").grid(row=len(etfs)+1, column=0, columnspan=2)
 save_as_text_button = tk.Button(window, text="ذخیره کردن اطلاعات", command=lambda: save_as_text(), borderwidth=5, width=15, fg="red").grid(row=len(etfs)+1, column=2)
