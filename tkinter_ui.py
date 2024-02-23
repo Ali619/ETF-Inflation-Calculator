@@ -1,5 +1,5 @@
 import tkinter as tk
-from buttons import buttons
+from etfs import etfs
 
 class Create_Label():
     def __init__(self, window: tk.Tk, text: str, row: int, column: int):
@@ -26,9 +26,9 @@ nav_price_label = Create_Label(window=window, text="ابطال NAV قیمت", ro
 result_label = Create_Label(window=window, text="میزان حباب (%)", row=0, column=3)            
 
 i = 1
-for k, v in buttons.items():
-    Create_Label(window=window, text=buttons[k]["name"], row=i, column=0)
-    buttons[k]["entry"].append((Create_Entry(window, row=i, column=1)).entry)
-    buttons[k]["entry"].append((Create_Entry(window, row=i, column=2)).entry)
-    buttons[k]["row_number"] = i
+for k, v in etfs.items():
+    Create_Label(window=window, text=etfs[k]["name"], row=i, column=0)
+    etfs[k]["entry"].append((Create_Entry(window, row=i, column=1)).entry)
+    etfs[k]["entry"].append((Create_Entry(window, row=i, column=2)).entry)
+    etfs[k]["row_number"] = i
     i += 1

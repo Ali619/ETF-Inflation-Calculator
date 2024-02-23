@@ -1,4 +1,4 @@
-buttons = {
+etfs = {
     "tala": {
         "name": "طلا",
         "entry": []
