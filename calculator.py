@@ -1,8 +1,9 @@
 import tkinter as tk
+import sys
+from persiantools.jdatetime import JalaliDate
 from tkinter_ui import window
 from etfs import etfs
 from tabulate import tabulate
-from persiantools.jdatetime import JalaliDate
 
 def calculator():
     final_result = {'last_price': [], 'nav_price': [], 'bubble (%)': [], 'name': []}
@@ -36,4 +37,4 @@ def save_as_text():
 
 calc_infl_button = tk.Button(window, text="اجرا", command=lambda: calculator(), borderwidth=5, width=25, fg="green").grid(row=len(etfs)+1, column=0, columnspan=2)
 save_as_text_button = tk.Button(window, text="ذخیره کردن اطلاعات", command=lambda: save_as_text(), borderwidth=5, width=15, fg="blue").grid(row=len(etfs)+1, column=2, columnspan=1)
-exit_button = tk.Button(window, text="خروج", command=lambda: exit(), borderwidth=5, width=10, fg="red").grid(row=len(etfs)+1, column=3, columnspan=1)
+exit_button = tk.Button(window, text="خروج", command=lambda: sys.exit(), borderwidth=5, width=10, fg="red").grid(row=len(etfs)+1, column=3, columnspan=1)
